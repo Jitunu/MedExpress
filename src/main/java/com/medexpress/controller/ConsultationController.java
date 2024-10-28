@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST Controller for managing consultation-related endpoints.
+ * Provides endpoints to fetch consultation questions and submit answers.
+ */
 @RestController
 @RequestMapping("/api/v1/consultation")
 public class ConsultationController {
@@ -22,6 +26,11 @@ public class ConsultationController {
         this.consultationService = consultationService;
     }
 
+    /**
+     * Retrieves a list of consultation questions.
+     *
+     * @return a {@link ResponseEntity} containing the list of questions as JSON.
+     */
     @GetMapping("/questions")
     public ResponseEntity<List<ConsultationQuestion>> retrieveQuestion() {
         logger.info("Retrieving List of question");
@@ -29,10 +38,16 @@ public class ConsultationController {
         return ResponseEntity.ok(listOfQuestion);
     }
 
+    /**
+     * Submits the user's answers to the consultation questions and evaluates eligibility.
+     *
+     * @param consultationAnswer the {@link ConsultationAnswer} object containing user answers.
+     * @return a {@link ResponseEntity} containing consultation the {@link ConsultationResponse} as JSON.
+     */
     @PostMapping("/submit")
-    public ResponseEntity<ConsultationResponse> submitAnswers(@Valid @RequestBody ConsultationAnswer answers) {
+    public ResponseEntity<ConsultationResponse> submitAnswers(@Valid @RequestBody ConsultationAnswer consultationAnswer) {
         logger.info("Consultation Started");
-        ConsultationResponse consultation = consultationService.consultation(answers);
+        ConsultationResponse consultation = consultationService.consultation(consultationAnswer);
         logger.info("Consultation Finished : "+consultation.getMessage());
         return ResponseEntity.ok(consultation);
     }

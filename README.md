@@ -36,7 +36,7 @@ This application uses in-memory collections for data management, so no permanent
 
 ### Prerequisites
 
-- **JDK**: Ensure you have JDK 17 or later (Java 21 recommended).
+- **JDK**: Ensure you have JDK 21.
 - **Maven**: Ensure Maven 3.8.5 or later is installed.
 
 ### Project Configuration
@@ -102,11 +102,11 @@ curl -X POST http://localhost:8080/api/v1/consultation/submit \
 -d '{
     "answers": [
         {
-            "questionId": "q1",
+            "questionId": "1",
             "answer": "yes"
         },
         {
-            "questionId": "q2",
+            "questionId": "2",
             "answer": "no"
         }
     ]
@@ -115,8 +115,8 @@ curl -X POST http://localhost:8080/api/v1/consultation/submit \
 Expected JSON Response:
 ```bash
 {
-    "eligible": true,
-    "message": "You are eligible for the medication."
+    "canPrescribe": false,
+    "message": "We cannot prescribe the medication."
 }
 
 ```

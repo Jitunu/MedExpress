@@ -11,6 +11,13 @@ import java.util.List;
 @Service
 public class ConsultationServiceImpl implements ConsultationService {
     private List<ConsultationQuestion> questions;
+
+    /**
+     * Retrieves a list of sample consultation questions.
+     * These questions can be customized based on requirements.
+     *
+     * @return a {@link List} of {@link ConsultationQuestion} objects representing questions.
+     */
     @Override
     public List<ConsultationQuestion> retrieveQuestion() {
         this.questions = new ArrayList<>();
@@ -20,10 +27,17 @@ public class ConsultationServiceImpl implements ConsultationService {
         return questions;
     }
 
+    /**
+     * Evaluates the user's consultation answers to determine ConsultationResponse.
+     * Checks if the answers provided meet the criteria for a prescription.
+     *
+     * @param consultationAnswer a {@link ConsultationAnswer} object containing the user's answers.
+     * @return {@link ConsultationResponse} if the user canPrescribe or not for the prescription.
+     */
     @Override
-    public ConsultationResponse consultation(ConsultationAnswer answers) {
-        boolean canPrescribe = !answers.getAnswers().stream().anyMatch(i -> i.getAnswer().equalsIgnoreCase("Yes"));
-        String message = canPrescribe ? "You are likely eligible for a prescription." : "We cannot prescribe the medication.";
+    public ConsultationResponse consultation(ConsultationAnswer consultationAnswer) {
+        boolean canPrescribe = !consultationAnswer.getAnswers().stream().anyMatch(i -> i.getAnswer().equalsIgnoreCase("Yes"));
+        String message = canPrescribe ? "You are eligible for a prescription." : "We cannot prescribe the medication.";
         return new ConsultationResponse(canPrescribe, message);
     }
 }
