@@ -44,7 +44,7 @@ This application uses in-memory collections for data management, so no permanent
 Clone the repository and navigate to the project directory:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Jitunu/MedExpress.git
 cd consultation
 ```
 
