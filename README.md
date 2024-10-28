@@ -91,7 +91,7 @@ Here are sample cURL commands to interact with the API.
 
 ### Fetch Consultation Questions
 ```bash
-curl -X GET http://localhost:8080/api/v1/questions
+curl -X GET http://localhost:8080/api/v1/consultation/questions
 ```
 
 ### Submit Consultation Answers
@@ -99,18 +99,18 @@ curl -X GET http://localhost:8080/api/v1/questions
 ```bash
 curl -X POST http://localhost:8080/api/v1/consultation/submit \
 -H "Content-Type: application/json" \
--d '{
-    "answers": [
+-d "{
+    \"answers\": [
         {
-            "questionId": "1",
-            "answer": "yes"
+            \"questionId\": \"1\",
+            \"answer\": \"yes\"
         },
         {
-            "questionId": "2",
-            "answer": "no"
+            \"questionId\": \"2\",
+            \"answer\": \"no\"
         }
     ]
-}'
+}"
 ```
 Expected JSON Response:
 ```bash
